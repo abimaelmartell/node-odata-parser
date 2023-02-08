@@ -178,7 +178,10 @@ escapedQuote                = a:"''" { return a; }
 identifierPart              = a:[_a-zA-Z] b:unreserved? { return a + b; }
 arrayValue                  = a:string / a:decimal / a:double / a:guid
 array                       = "(" a:arrayValue b:(',' arrayValue)* ")" {
-                                return [a].concat(b.map(f => f[1]))
+                                return {
+                                    type: 'array',
+                                    value: [a].concat(b.map(f => f[1]))
+                                }
                               }
 identifier                  =
                                 a:identifierPart list:("." i:identifier {return i;})? {

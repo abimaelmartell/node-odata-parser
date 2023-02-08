@@ -426,7 +426,8 @@ describe('odata.parser grammar', function () {
     it('should accept in', function () {
         var ast = parser.parse("$filter=_first_name in ('id-1','id-2','id-3')");
         assert.equal(ast.$filter.left.name, "_first_name");
-        assert.deepEqual(ast.$filter.right, ['id-1','id-2','id-3']);
+        assert.deepEqual(ast.$filter.right.value, ['id-1','id-2','id-3']);
+        assert.equal(ast.$filter.right.type, 'array');
     });
 
     // it('xxxxx', function () {
