@@ -5,7 +5,7 @@ Fork with added support for the `IN` filter. Add uuid and `$count=true`for odata
 ## Installation
 
 ```
-npm install @seamapi/odata-parser
+npm install @licheng5625/odata-parser
 ```
 
 ## Usage
