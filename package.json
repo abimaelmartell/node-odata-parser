@@ -1,6 +1,6 @@
 {
   "name": "@licheng5625/odata-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "OData query string parser",
   "main": "lib/index.js",
   "scripts": {
