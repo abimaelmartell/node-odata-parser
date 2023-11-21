@@ -1,6 +1,6 @@
 {
   "name": "@licheng5625/odata-parser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "OData query string parser",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,6 @@
     "clean": "rm -rf lib/odata-parser.js",
     "build": "pegjs src/odata.pegjs lib/odata-parser.js"
   },
-  "dependencies": {},
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/git": "^10.0.1",
@@ -17,12 +16,27 @@
     "mocha": "2.1.0",
     "pegjs": "0.7.0"
   },
-  "repository": "git@github.com:licheng5625/node-odata-parser.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/licheng5625/node-odata-parser.git"
+  },
   "keywords": [
     "odata",
     "parser"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "types": "types/index.d.ts",
   "author": "auth0",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/licheng5625/node-odata-parser/issues"
+  },
+  "homepage": "https://github.com/licheng5625/node-odata-parser#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }
