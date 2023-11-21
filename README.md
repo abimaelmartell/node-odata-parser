@@ -1,11 +1,11 @@
 OData query string parser for node.js based on [pegjs](http://pegjs.majda.cz/).
 
-Fork with added support for the `IN` filter.
+Fork with added support for the `IN` filter. Add uuid and `$count=true`for odata v4.0 querys.
 
 ## Installation
 
 ```
-npm install @seamapi/odata-parser
+npm install @licheng5625/odata-parser
 ```
 
 ## Usage
