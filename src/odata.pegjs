@@ -364,7 +364,7 @@ part                        =   booleanFunc /
                                 otherFunc2 /
                                 otherFunc1 /
                                 array /
-                                primitiveLiteral {
+                                l:primitiveLiteral {
                                     return {
                                         type: 'literal',
                                         value: l
