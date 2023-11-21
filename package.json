@@ -1,5 +1,5 @@
 {
-  "name": "@seamapi/odata-parser",
+  "name": "@licheng5625/odata-parser",
   "version": "1.0.2",
   "description": "OData query string parser",
   "main": "lib/index.js",
@@ -17,7 +17,7 @@
     "mocha": "2.1.0",
     "pegjs": "0.7.0"
   },
-  "repository": "git@github.com:seamapi/node-odata-parser.git",
+  "repository": "git@github.com:licheng5625/node-odata-parser.git",
   "keywords": [
     "odata",
     "parser"

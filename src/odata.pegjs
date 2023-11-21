@@ -32,7 +32,7 @@ HEXDIG                      =   [0-9a-fA-F]
 //peg does not support repetition (ie: [a]{4})
 HEXDIG2                     =   HEXDIG HEXDIG
 HEXDIG4                     =   HEXDIG2 HEXDIG2
-HEXDIG8                     =   HEXDIG4 HEXDIG8
+HEXDIG8                     =   HEXDIG4 HEXDIG4
 
 
 SQUOTE                      =   "%x27" / "'"
@@ -48,6 +48,7 @@ primitiveLiteral            =   null /
                                 dateTime /
                                 dateTimeOffset /
                                 guid /
+                                uuid /
                                 double /
                                 decimal /
                                 single /
@@ -110,6 +111,8 @@ double                      =  sign:sign? digit:DIGIT "." decimal:DIGIT+ ("e" / 
                                nanInfinity ("D" / "d")?
 
 guid                        =   "guid" SQUOTE HEXDIG8 "-" HEXDIG4 "-" HEXDIG4 "-" HEXDIG8 HEXDIG4 SQUOTE
+
+uuid                        =   HEXDIG8 "-" HEXDIG4 "-" HEXDIG4 "-" HEXDIG4 "-" HEXDIG8 HEXDIG4
 
 int32                       =   sign:sign? digit:DIGIT+ { return parseInt(digit.join('')) * (sign === '-' ? -1 : 1); }
                                 // numbers in the range from -2147483648 to 2147483647
@@ -176,7 +179,7 @@ unreserved                  = a:[a-zA-Z0-9-_]+ { return a.join(''); }
 validstring                 = a:([^']/escapedQuote)* { return a.join('').replace(/('')/g, "'"); }
 escapedQuote                = a:"''" { return a; }
 identifierPart              = a:[_a-zA-Z] b:unreserved? { return a + b; }
-arrayValue                  = a:string / a:decimal / a:double / a:guid
+arrayValue                  = a:string / a:decimal / a:double / a:guid / a:uuid
 array                       = "(" a:arrayValue b:(',' arrayValue)* ")" {
                                 return {
                                     type: 'array',
@@ -230,6 +233,10 @@ format                      =   "$format=" v:.+ { return {'$format': v.join('') 
 //$inlinecount
 inlinecount                 =   "$inlinecount=" v:("allpages" / "none") { return {'$inlinecount': v }; }
                             /   "$inlinecount=" .* { return {"error": 'invalid $inlinecount parameter'}; }
+
+//$count
+count                       =   "$count=" v:("true" / "false") { return {'$count': v }; }
+                            /   "$count=" .* { return {"error": 'invalid $count parameter'}; }
 
 // $orderby
 orderby                     =   "$orderby=" list:orderbyList {
@@ -357,7 +364,7 @@ part                        =   booleanFunc /
                                 otherFunc2 /
                                 otherFunc1 /
                                 array /
-                                l:primitiveLiteral {
+                                primitiveLiteral {
                                     return {
                                         type: 'literal',
                                         value: l
@@ -403,6 +410,7 @@ exp                         =
                                 top /
                                 format /
                                 inlinecount /
+                                count /
                                 select /
                                 callback /
                                 unsupported
